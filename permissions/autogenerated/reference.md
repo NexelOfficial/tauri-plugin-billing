@@ -2,8 +2,9 @@
 
 Default permissions for the plugin
 
-- `allow-initiate-purchase`
-- `allow-get-price`
+- `allow-create-purchase`
+- `allow-get-product`
+- `allow-get-all-purchases`
 
 ## Permission Table
 
@@ -17,25 +18,12 @@ Default permissions for the plugin
 <tr>
 <td>
 
-`billing:allow-get-price`
+`billing:allow-create-purchase`
 
 </td>
 <td>
 
-Enables the get_price command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`billing:deny-get-price`
-
-</td>
-<td>
-
-Denies the get_price command without any pre-configured scope.
+Enables the create_purchase command without any pre-configured scope.
 
 </td>
 </tr>
@@ -43,12 +31,12 @@ Denies the get_price command without any pre-configured scope.
 <tr>
 <td>
 
-`billing:allow-initiate-purchase`
+`billing:deny-create-purchase`
 
 </td>
 <td>
 
-Enables the initiate_purchase command without any pre-configured scope.
+Denies the create_purchase command without any pre-configured scope.
 
 </td>
 </tr>
@@ -56,12 +44,51 @@ Enables the initiate_purchase command without any pre-configured scope.
 <tr>
 <td>
 
-`billing:deny-initiate-purchase`
+`billing:allow-get-all-purchases`
 
 </td>
 <td>
 
-Denies the initiate_purchase command without any pre-configured scope.
+Enables the get_all_purchases command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`billing:deny-get-all-purchases`
+
+</td>
+<td>
+
+Denies the get_all_purchases command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`billing:allow-get-product`
+
+</td>
+<td>
+
+Enables the get_product command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`billing:deny-get-product`
+
+</td>
+<td>
+
+Denies the get_product command without any pre-configured scope.
 
 </td>
 </tr>

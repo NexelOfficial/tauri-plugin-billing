@@ -1,3 +1,7 @@
 [default]
 description = "Default permissions for the plugin"
-permissions = ["allow-initiate-purchase", "allow-get-price"]
+permissions = [
+    "allow-create-purchase",
+    "allow-get-product",
+    "allow-get-all-purchases",
+]

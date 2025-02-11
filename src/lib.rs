@@ -32,8 +32,9 @@ impl<R: Runtime, T: Manager<R>> crate::BillingExt<R> for T {
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("billing")
         .invoke_handler(tauri::generate_handler![
-            commands::initiate_purchase,
-            commands::get_price
+            commands::create_purchase,
+            commands::get_product,
+            commands::get_all_purchases
         ])
         .setup(|app, api| {
             let billing = mobile::init(app, api)?;

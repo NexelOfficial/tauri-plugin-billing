@@ -28,17 +28,21 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Billing<R: Runtime>(PluginHandle<R>);
 
 impl<R: Runtime> Billing<R> {
-    /// Initiates a purchase for the given SKU.
-    pub fn initiate_purchase(&self, payload: PurchaseRequest) -> crate::Result<PurchaseResponse> {
+    pub fn create_purchase(&self, payload: PurchaseRequest) -> crate::Result<PurchaseResponse> {
         self.0
-            .run_mobile_plugin("initiatePurchase", payload)
+            .run_mobile_plugin("createPurchase", payload)
             .map_err(Into::into)
     }
 
-    /// Get price for a product
-    pub fn get_price(&self, payload: PurchaseRequest) -> crate::Result<PriceResponse> {
+    pub fn get_product(&self, payload: PurchaseRequest) -> crate::Result<ProductsResponse> {
         self.0
-            .run_mobile_plugin("getPrice", payload)
+            .run_mobile_plugin("getProduct", payload)
+            .map_err(Into::into)
+    }
+
+    pub fn get_all_purchases(&self) -> crate::Result<PurchasesResponse> {
+        self.0
+            .run_mobile_plugin("getAllPurchases", 0)
             .map_err(Into::into)
     }
 }

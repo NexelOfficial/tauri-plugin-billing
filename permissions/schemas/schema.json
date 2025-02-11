@@ -295,24 +295,34 @@
       "type": "string",
       "oneOf": [
         {
-          "description": "Enables the get_price command without any pre-configured scope.",
+          "description": "Enables the create_purchase command without any pre-configured scope.",
           "type": "string",
-          "const": "allow-get-price"
+          "const": "allow-create-purchase"
         },
         {
-          "description": "Denies the get_price command without any pre-configured scope.",
+          "description": "Denies the create_purchase command without any pre-configured scope.",
           "type": "string",
-          "const": "deny-get-price"
+          "const": "deny-create-purchase"
         },
         {
-          "description": "Enables the initiate_purchase command without any pre-configured scope.",
+          "description": "Enables the get_all_purchases command without any pre-configured scope.",
           "type": "string",
-          "const": "allow-initiate-purchase"
+          "const": "allow-get-all-purchases"
         },
         {
-          "description": "Denies the initiate_purchase command without any pre-configured scope.",
+          "description": "Denies the get_all_purchases command without any pre-configured scope.",
           "type": "string",
-          "const": "deny-initiate-purchase"
+          "const": "deny-get-all-purchases"
+        },
+        {
+          "description": "Enables the get_product command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-get-product"
+        },
+        {
+          "description": "Denies the get_product command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-get-product"
         },
         {
           "description": "Default permissions for the plugin",
