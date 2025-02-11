@@ -13,7 +13,6 @@ Default permissions for the plugin
 <th>Description</th>
 </tr>
 
-
 <tr>
 <td>
 
@@ -62,32 +61,6 @@ Enables the initiate_purchase command without any pre-configured scope.
 <td>
 
 Denies the initiate_purchase command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`billing:allow-ping`
-
-</td>
-<td>
-
-Enables the ping command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`billing:deny-ping`
-
-</td>
-<td>
-
-Denies the ping command without any pre-configured scope.
 
 </td>
 </tr>
