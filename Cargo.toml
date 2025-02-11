@@ -1,12 +1,22 @@
 [package]
 name = "tauri-plugin-billing"
 version = "0.1.0"
-authors = [ "You" ]
-description = ""
+authors = [ "NexelOfficial" ]
+description = "A Tauri plugin to access the Android billing SDK"
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/dist-js", "/guest-js", "/node_modules"]
 links = "tauri-plugin-billing"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-linux-android"]
+
+[package.metadata.platforms.support]
+windows = { level = "none", notes = "" }
+linux = { level = "none", notes = "" }
+macos = { level = "none", notes = "" }
+android = { level = "full", notes = "" }
+ios = { level = "full", notes = "" }
 
 [dependencies]
 tauri = { version = "2.2.4" }

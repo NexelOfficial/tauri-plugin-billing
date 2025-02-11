@@ -1,3 +1,5 @@
+#![cfg(mobile)]
+
 use tauri::{
     plugin::{Builder, TauriPlugin},
     Manager, Runtime,
@@ -5,7 +7,6 @@ use tauri::{
 
 pub use models::*;
 
-#[cfg(mobile)]
 mod mobile;
 
 mod commands;
@@ -14,7 +15,6 @@ mod models;
 
 pub use error::{Error, Result};
 
-#[cfg(mobile)]
 use mobile::Billing;
 
 /// Extensions to [`tauri::App`], [`tauri::AppHandle`] and [`tauri::Window`] to access the billing APIs.
@@ -36,7 +36,6 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
             commands::get_price
         ])
         .setup(|app, api| {
-            #[cfg(mobile)]
             let billing = mobile::init(app, api)?;
             app.manage(billing);
             Ok(())
