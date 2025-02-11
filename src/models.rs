@@ -36,7 +36,7 @@ pub struct Product {
 #[serde(rename_all = "camelCase")]
 pub struct Purchase {
     pub developer_payload: String,
-    pub order_id: String,
+    pub order_id: Option<String>,
     pub original_json: String,
     pub package_name: String,
     pub products: Vec<String>,

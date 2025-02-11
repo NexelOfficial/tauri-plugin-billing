@@ -11,7 +11,7 @@ type BillingProduct = {
 
 type BillingPurchase = {
   developerPayload: string;
-  orderId: string;
+  orderId?: string;
   originalJson: string;
   packageName: string;
   products: string[];

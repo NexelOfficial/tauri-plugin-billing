@@ -1,6 +1,6 @@
 {
   "name": "tauri-plugin-billing-api",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "NexelOfficial",
   "description": "A Tauri plugin to access the Android billing SDK",
   "type": "module",
