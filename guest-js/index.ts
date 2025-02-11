@@ -15,7 +15,7 @@ type BillingPurchase = {
   originalJson: string;
   packageName: string;
   products: string[];
-  purchaseState: string;
+  purchaseState: number;
   purchaseTime: number;
   purchaseToken: string;
   quantity: number;
@@ -30,6 +30,16 @@ export async function createPurchase(
   return await invoke<{ success?: boolean }>("plugin:billing|create_purchase", {
     payload: {
       productId,
+    },
+  }).then((r) => r.success || null);
+}
+
+export async function consume(
+  purchaseToken: string
+): Promise<boolean | null> {
+  return await invoke<{ success?: boolean }>("plugin:billing|consume", {
+    payload: {
+      purchaseToken,
     },
   }).then((r) => r.success || null);
 }

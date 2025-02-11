@@ -5,6 +5,7 @@ Default permissions for the plugin
 - `allow-create-purchase`
 - `allow-get-product`
 - `allow-get-all-purchases`
+- `allow-consume`
 
 ## Permission Table
 
@@ -14,6 +15,32 @@ Default permissions for the plugin
 <th>Description</th>
 </tr>
 
+
+<tr>
+<td>
+
+`billing:allow-consume`
+
+</td>
+<td>
+
+Enables the consume command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`billing:deny-get-product`
+
+</td>
+<td>
+
+Denies the consume command without any pre-configured scope.
+
+</td>
+</tr>
 
 <tr>
 <td>

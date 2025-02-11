@@ -34,7 +34,8 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
         .invoke_handler(tauri::generate_handler![
             commands::create_purchase,
             commands::get_product,
-            commands::get_all_purchases
+            commands::get_all_purchases,
+            commands::consume
         ])
         .setup(|app, api| {
             let billing = mobile::init(app, api)?;

@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-/// Request payload with product_id
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PurchaseRequest {
@@ -8,11 +7,17 @@ pub struct PurchaseRequest {
     pub product_id: String
 }
 
-/// Response payload for initiating a purchase.
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ConsumeRequest {
+    /// The purchase token used for consume request
+    pub purchase_token: String
+}
+
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PurchaseResponse {
-    /// Wether the purchase was succesfull or not
+    /// Wether the purchase was succesful or not
     pub success: bool,
 }
 
@@ -35,7 +40,7 @@ pub struct Purchase {
     pub original_json: String,
     pub package_name: String,
     pub products: Vec<String>,
-    pub purchase_state: String,
+    pub purchase_state: i32,
     pub purchase_time: i128,
     pub purchase_token: String,
     pub quantity: i32,
@@ -44,7 +49,6 @@ pub struct Purchase {
     pub is_auto_renewing: bool
 }
 
-/// Response payload for getting product details
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ProductsResponse {
@@ -52,7 +56,6 @@ pub struct ProductsResponse {
     pub products: Vec<Product>
 }
 
-/// Response payload for getting all purchases
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PurchasesResponse {

@@ -295,6 +295,16 @@
       "type": "string",
       "oneOf": [
         {
+          "description": "Enables the consume command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-consume"
+        },
+        {
+          "description": "Denies the consume command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-get-product"
+        },
+        {
           "description": "Enables the create_purchase command without any pre-configured scope.",
           "type": "string",
           "const": "allow-create-purchase"

@@ -13,6 +13,14 @@ pub(crate) async fn create_purchase<R: Runtime>(
 }
 
 #[command]
+pub(crate) async fn consume<R: Runtime>(
+    app: AppHandle<R>,
+    payload: ConsumeRequest,
+) -> Result<PurchaseResponse> {
+    app.billing().consume(payload)
+}
+
+#[command]
 pub(crate) async fn get_product<R: Runtime>(
     app: AppHandle<R>,
     payload: PurchaseRequest,

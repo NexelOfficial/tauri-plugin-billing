@@ -4,4 +4,5 @@ permissions = [
     "allow-create-purchase",
     "allow-get-product",
     "allow-get-all-purchases",
+    "allow-consume"
 ]

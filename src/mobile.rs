@@ -34,6 +34,12 @@ impl<R: Runtime> Billing<R> {
             .map_err(Into::into)
     }
 
+    pub fn consume(&self, payload: ConsumeRequest) -> crate::Result<PurchaseResponse> {
+        self.0
+            .run_mobile_plugin("consume", payload)
+            .map_err(Into::into)
+    }
+
     pub fn get_product(&self, payload: PurchaseRequest) -> crate::Result<ProductsResponse> {
         self.0
             .run_mobile_plugin("getProduct", payload)

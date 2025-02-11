@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-consume"
+description = "Enables the consume command without any pre-configured scope."
+commands.allow = ["consume"]
+
+[[permission]]
+identifier = "deny-get-product"
+description = "Denies the consume command without any pre-configured scope."
+commands.deny = ["consume"]

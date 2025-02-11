@@ -16,6 +16,11 @@ class PurchaseArgs {
     var productId: String? = null
 }
 
+@InvokeArg
+class ConsumeArgs {
+    var purchaseToken: String? = null
+}
+
 fun getBillingMessage(billingResult: BillingResult): String {
     return when (billingResult.responseCode) {
         -3 -> "SERVICE_TIMEOUT"
@@ -62,6 +67,7 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
             .setListener { billingResult, purchases ->
                 // Handle purchase updates here
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+                    println("Handling purchase..")
                     handlePurchase(purchases[0])
                 } else {
                     savedInvoke?.reject("billingResult: " + getBillingMessage(billingResult))
@@ -105,13 +111,15 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
                 ret.put("success", true)
                 savedInvoke?.resolve(ret)
             }
+        } else {
+            savedInvoke?.reject("purchaseState: " + purchase.purchaseState)
         }
-
-        savedInvoke = null
     }
 
     @Command
     fun createPurchase(invoke: Invoke) {
+        // Reject previous saved if it exists
+        savedInvoke?.reject("New request requested")
         savedInvoke = invoke
 
         val args = invoke.parseArgs(PurchaseArgs::class.java)
@@ -187,7 +195,7 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
 
                     val purchase = JSObject().apply {
                         put("orderId", dets.orderId)
-                        put("productIds", productsArray)
+                        put("products", productsArray)
                         put("purchaseTime", dets.purchaseTime)
                         put("purchaseToken", dets.purchaseToken)
                         put("purchaseState", dets.purchaseState)
@@ -207,6 +215,24 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
                 invoke.resolve(ret)
             } else {
                 invoke.reject("queryPurchasesAsync: " + getBillingMessage(billingResult))
+            }
+        }
+    }
+
+    @Command
+    fun consume(invoke: Invoke) {
+        val args = invoke.parseArgs(ConsumeArgs::class.java)
+        val consumeParams = ConsumeParams.newBuilder()
+            .setPurchaseToken(args.purchaseToken ?: "")
+            .build()
+
+        billingClient.consumeAsync(consumeParams) { billingResult, purchasesList ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                val ret = JSObject()
+                ret.put("success", true)
+                invoke.resolve(ret)
+            } else {
+                invoke.reject("consumeAsync: " + getBillingMessage(billingResult))
             }
         }
     }
