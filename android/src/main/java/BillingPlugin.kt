@@ -191,6 +191,13 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
                         put("purchaseTime", dets.purchaseTime)
                         put("purchaseToken", dets.purchaseToken)
                         put("purchaseState", dets.purchaseState)
+                        put("developerPayload", dets.developerPayload)
+                        put("originalJson", dets.originalJson)
+                        put("packageName", dets.packageName)
+                        put("quantity", dets.quantity)
+                        put("signature", dets.signature)
+                        put("isAcknowledged", dets.isAcknowledged)
+                        put("isAutoRenewing", dets.isAutoRenewing)
                     }
 
                     purchasesArray.put(purchase)
