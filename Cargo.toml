@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-billing"
-version = "0.1.1"
+version = "0.1.2"
 authors = [ "NexelOfficial" ]
 description = "A Tauri plugin to access the Android billing SDK"
 edition = "2021"
