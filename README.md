@@ -1,4 +1,4 @@
-![Barcode Scanner](https://github.com/NexelOfficial/tauri-plugin-billing/banner.png)
+![Barcode Scanner](https://raw.githubusercontent.com/NexelOfficial/tauri-plugin-billing/refs/heads/main/banner.png)
 
 Handle one-time purchases using the Android Billing API
 
