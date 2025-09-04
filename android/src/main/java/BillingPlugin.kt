@@ -63,6 +63,10 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
     }
 
     private fun initializeBillingClient() {
+        val pendingPurchaseParam = PendingPurchasesParams.newBuilder()
+            .enableOneTimeProducts()
+            .build()
+
         billingClient = BillingClient.newBuilder(activity)
             .setListener { billingResult, purchases ->
                 // Handle purchase updates here
@@ -73,7 +77,7 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
                     savedInvoke?.reject("billingResult: " + getBillingMessage(billingResult))
                 }
             }
-            .enablePendingPurchases()
+            .enablePendingPurchases(pendingPurchaseParam)
             .build()
 
         billingClient.startConnection(object : BillingClientStateListener {
@@ -125,7 +129,8 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
         val args = invoke.parseArgs(PurchaseArgs::class.java)
         val queryParams = getProductQueryParams(args.productId ?: "")
 
-        billingClient.queryProductDetailsAsync(queryParams) { billingResult, productList ->
+        billingClient.queryProductDetailsAsync(queryParams) { billingResult, queryProductDetailsResult ->
+            val productList = queryProductDetailsResult.getProductDetailsList()
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && productList.isNotEmpty()) {
                 val dets = productList[0]
                 val billingFlowParams = BillingFlowParams.newBuilder()
@@ -155,7 +160,8 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
         val args = invoke.parseArgs(PurchaseArgs::class.java)
         val queryParams = getProductQueryParams(args.productId ?: "")
 
-        billingClient.queryProductDetailsAsync(queryParams) { billingResult, productList ->
+        billingClient.queryProductDetailsAsync(queryParams) { billingResult, queryProductDetailsResult ->
+            val productList = queryProductDetailsResult.getProductDetailsList()
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && productList.isNotEmpty()) {
                 val ret = JSObject()
                 val productsArray = JSArray()
@@ -184,7 +190,11 @@ class BillingPlugin(private val activity: Activity) : Plugin(activity) {
 
     @Command
     fun getAllPurchases(invoke: Invoke) {
-        billingClient.queryPurchasesAsync(BillingClient.SkuType.INAPP) { billingResult, purchasesList ->
+        val queryParams = QueryPurchasesParams.newBuilder()
+            .setProductType(BillingClient.SkuType.INAPP)
+            .build()
+
+        billingClient.queryPurchasesAsync(queryParams) { billingResult, purchasesList ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                 val ret = JSObject()
                 val purchasesArray = JSArray()
